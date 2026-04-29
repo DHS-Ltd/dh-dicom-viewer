@@ -1,11 +1,10 @@
 /*
- * Copyright (c) 2009-2020 Weasis Team and other contributors.
+ * Copyright (c) 2026 DH Solutions Limited.
  *
- * This program and the accompanying materials are made available under the terms of the Eclipse
- * Public License 2.0 which is available at https://www.eclipse.org/legal/epl-2.0, or the Apache
+ * This program and the accompanying materials are made available under the terms of the Apache
  * License, Version 2.0 which is available at https://www.apache.org/licenses/LICENSE-2.0.
  *
- * SPDX-License-Identifier: EPL-2.0 OR Apache-2.0
+ * SPDX-License-Identifier: Apache-2.0
  */
 package org.weasis.base.ui.gui;
 
@@ -74,29 +73,35 @@ public class WeasisAboutBox extends JDialog {
     jTextPane1.setFocusable(false);
     jTextPane1.setContentType("text/html");
     jTextPane1.setEditable(false);
-
     jTextPane1.addHyperlinkListener(GuiUtils.buildHyperlinkListener());
+
     WProperties preferences = GuiUtils.getUICore().getSystemPreferences();
+    String licenseStatus = getLicenseStatus();
     String html =
         """
         <div align="center">
           <h2>%s %s</h2>
-          <a href="%s">%s</a><br>
-          %s<br>
-          %s <a href="%s">%s</a><br>
-          <p>%s %s, %s<br>
-          Java VM: %s</p><br>
+          <p>%s</p>
+          <p>
+            <b>DH Solutions Limited</b><br>
+            <a href="mailto:directhospitalsolutionsltd@gmail.com">directhospitalsolutionsltd@gmail.com</a>
+          </p>
+          <p><b>License:</b> %s</p>
+          <p>%s, %s, %s<br>
+          Java VM: %s</p>
+          <hr>
+          <small>
+            Based on <a href="https://github.com/nroduit/Weasis">Weasis</a> (Apache 2.0).<br>
+            Third-party licenses:
+            <a href="https://github.com/nroduit/Weasis/blob/master/3rd-party-licenses.md">view</a>
+          </small>
         </div>
         """
             .formatted(
                 AppProperties.WEASIS_NAME,
                 AppProperties.WEASIS_VERSION,
-                preferences.getProperty("weasis.releasenotes", ""),
-                Messages.getString("WeasisWin.release"),
-                preferences.getProperty("weasis.copyrights", ""),
-                AppProperties.WEASIS_NAME,
-                "https://github.com/nroduit/Weasis/blob/master/3rd-party-licenses.md",
-                Messages.getString("WeasisWin.otherSoft"),
+                preferences.getProperty("weasis.copyrights", "© 2026 DH Solutions Limited"),
+                licenseStatus,
                 System.getProperty("os.name"),
                 System.getProperty("os.version"),
                 System.getProperty("os.arch"),
@@ -129,7 +134,11 @@ public class WeasisAboutBox extends JDialog {
     getContentPane().add(panelRoot, null);
   }
 
-  // Overridden so we can exit when window is closed
+  /** Returns a human-readable license status string. Stub for Phase 3 license system. */
+  private static String getLicenseStatus() {
+    return "Active (Evaluation)";
+  }
+
   @Override
   protected void processWindowEvent(WindowEvent e) {
     if (WindowEvent.WINDOW_CLOSING == e.getID()) {

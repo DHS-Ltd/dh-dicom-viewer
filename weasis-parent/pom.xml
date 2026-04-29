@@ -14,8 +14,8 @@
   <properties>
     <!-- force command line arguments settings to set version -->
     <!-- $ mvn clean install -Drevision=4.2.2 -Dchangelist=-SNAPSHOT -->
-    <revision>4.7.0</revision>
-    <changelist>-SNAPSHOT</changelist>  <!-- Remove "-SNAPSHOT" for release -->
+    <revision>1.0.0</revision>
+    <changelist></changelist>
 
     <java-version>25</java-version>
     <jdk-version>25</jdk-version>
@@ -25,9 +25,9 @@
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
     <app.version>${revision}${changelist}</app.version>
-    <base.minimal.version>4.7.0</base.minimal.version>
+    <base.minimal.version>1.0.0</base.minimal.version>
     <i18n.version>4.0.0-SNAPSHOT</i18n.version>
-    <weasis.releasenotes>https://github.com/nroduit/Weasis/blob/master/CHANGELOG.md#v466-2025-12-29</weasis.releasenotes>
+    <weasis.releasenotes>https://github.com/DHS-Ltd/dh-dicom-viewer/releases</weasis.releasenotes>
 
     <felix.framework.version>7.0.5</felix.framework.version>
     <flatlaf.version>3.7.1</flatlaf.version>
